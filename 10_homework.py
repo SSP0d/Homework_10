@@ -42,8 +42,8 @@ class Phone(Field):
     def __init__(self, phone) -> None:
         self.value = phone
 
-
-DEFAULT_DICT = {}
+# DEFAULT_DICT = {}
+addressbook = AddressBook()
 
 
 def input_error(func):
@@ -61,6 +61,14 @@ def input_error(func):
     return wrapper
 
 
+def hello_func(user_input):
+    print('How can I help you?')
+
+
+def show_all_func(user_input):
+    print(addressbook.data)
+
+
 @input_error
 def get_user_input():
     user_input = input('Enter command: ').lower().split(' ')
@@ -72,29 +80,21 @@ def get_handler(actions):
     return OPERATIONS[actions]
 
 
-def hello_func(user_input):
-    print('How can I help you?')
-
-
 @input_error
 def add_func(user_input):
-    DEFAULT_DICT[user_input[1]] = int(user_input[2])
+    addressbook.data[user_input[1]] = int(user_input[2])
     print(f'New contact added')
 
 
 @input_error
 def change_func(user_input):
-    DEFAULT_DICT[user_input[1]] = int(user_input[2])
+    addressbook.data[user_input[1]] = int(user_input[2])
     print(f'Phone number has been changed')
 
 
 @input_error
 def phone_func(user_input):
-    print(DEFAULT_DICT[user_input[1]])
-
-
-def show_all_func(user_input):
-    print(DEFAULT_DICT)
+    print(addressbook.data[user_input[1]])
 
 
 def break_func(user_input):
