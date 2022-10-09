@@ -29,6 +29,9 @@ class Record:
             else:
                 print("Phone number does't exist")
 
+    def __repr__(self) -> str:
+        return f'{self.phones}'
+
 class Field:
     pass
 
@@ -42,6 +45,8 @@ class Phone(Field):
     def __init__(self, phone) -> None:
         self.value = phone
 
+    def __repr__(self) -> str:
+        return self.value
 
 addressbook = AddressBook()
 
